@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&display=swap');
+
+
+.cardsMovement{
+    cursor: pointer;
+}
+
+.menucategorias{
+    font-family: 'Smooch Sans', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+
+}
+
+.menucategorias:hover{
+    color: black;
+    
+}
+
+
+
+body{
+    margin: 0;
+    position: relative;
+    padding-bottom: 5em;
+    min-height:100vh ;
+}
+
+.footer {
+    padding: 1em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
+   }
