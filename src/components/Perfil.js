@@ -4,9 +4,9 @@ export const Perfil = () => {
   const { isAuthenticated, logout, user } = useAuth0();
 
   return (
-    <div className="container my-4 text-center">
+    <div className="container my-4 text-center mb-5">
       <div className="shadow-lg p-3">
-        <div className="">
+        <div className="mb-5">
           <span className="text-primary ">
             Hola, bienvenido {user.name}! <br />
             <img
@@ -14,7 +14,7 @@ export const Perfil = () => {
               height={100}
               src={user.picture}
               className="my-4"
-              alt=""
+              alt={user.name}
             />
           </span>
           <div className="mb-3">

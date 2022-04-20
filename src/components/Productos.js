@@ -14,7 +14,7 @@ export const Productos = (props) => {
 
   return (
     <>
-    {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesion para poder guardar productos al carrito</div>): (<span></span>)}
+    {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesion para guardar productos al carrito.</div>): (<span></span>)}
     <div className="container mb-5 pb-5">
       {productoIndividual !== null ? (
         <div className=" justify-content-center my-3 mx-3" key={productoIndividual.id} >

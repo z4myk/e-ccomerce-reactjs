@@ -72,7 +72,7 @@ function App() {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'se agrego con exito al carrito!',
+        title: 'El producto se guardo con exito!',
         showConfirmButton: false,
         timer: 1500
       })

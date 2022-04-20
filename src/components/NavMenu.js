@@ -60,7 +60,7 @@ export const NavMenu = ({ getDataCategory }) => {
                     height={50}
                     className="rounded mx-3"
                     src={user.picture}
-                    alt=""
+                    alt={user.name}
                   />
                 </Link>
               ) : (

@@ -16,10 +16,10 @@ export const Inicio = (props) => {
       <h2 className="small-text my-3 text-center my-4">Destacados del mes</h2>
       <hr className="text-success" />
 
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap pb-5 mb-5">
         {props.productos ? (
           props.productos.map(({ image, title, price, id, category, rating}) => (
-            <div className=" my-3 mx-3 cardsMovement mb-5"  key={id}>
+            <div className=" my-3 mx-3 cardsMovement mb-5 "  key={id}>
               <Card style={{ width: "15rem"}}  >
                 <Card.Img variant="top" src={image} className="w-75 mx-4 my-1" />
                 <Card.Body>
