@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&family=Ubuntu&display=swap');
 
 
 .cardsMovement{
@@ -6,14 +6,14 @@
 }
 
 .menucategorias{
-    font-family: 'Smooch Sans', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
     text-decoration: none;
 
 }
 
 .menucategorias:hover{
-    color: black;
+    color: rgb(255, 255, 255);
     
 }
 
@@ -33,3 +33,5 @@ body{
     width: 100%;
     
    }
+
+   

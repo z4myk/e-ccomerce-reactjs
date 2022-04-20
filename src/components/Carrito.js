@@ -1,29 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import '../components/Carrito.css';
 import 'animate.css';
+import { useAuth0} from '@auth0/auth0-react';
 export const Carrito = ({cart, setCart}) => {
 
+    const { isAuthenticated, logout, user } = useAuth0();
 
     const [total, setTotal ] = useState(null);
 
     useEffect(() => {
-        totalCart();
+    totalCart();
     }, [cart])
 
     const deleteCart = (id) => {
-
-        let borrarCarrito = cart.filter((item) => item.id !== id)
-        setCart(borrarCarrito)
+    let borrarCarrito = cart.filter((item) => item.id !== id)
+    setCart(borrarCarrito)
     }
 
     const totalCart = () => {
-        let resultado = 0;
-         cart.map((item) => resultado += item.price )
-         setTotal(resultado);
+    let resultado = 0;
+    cart.map((item) => resultado += item.price )
+    setTotal(resultado);
     }
 
     return (
         <div>
+                {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesion para poder guardar productos al carrito</div>): (<span></span>)}
             <h3 className="text-primary text-center my-4">Carrito ({cart.length})</h3>
             {cart.length === 0 ? (<div className="alert alert-warning text-center animate__animated animate__fadeInRight">Tu carrito esta vacio 😞</div>) : (null)}
             <div className="container py-1 px-3 mb-5 pb-5">
@@ -35,6 +37,7 @@ export const Carrito = ({cart, setCart}) => {
                     <p className="mx-3 my-3">{item.title}</p>
                     <p className="my-3">${item.price}<span className="text-success"> USD</span></p>
                     </div>
+
                     <button className="btn btn-outline-danger my-3 w-100" onClick={() => deleteCart(item.id)}><i class="fas fa-trash"></i></button>
                     </div>
             ))

@@ -13,6 +13,9 @@ import { Footer } from './components/Footer';
 import { ProductosCategoria } from './components/ProductosCategoria';
 import { Carrito } from './components/Carrito';
 import Swal from 'sweetalert2'
+
+import { Perfil } from './components/Perfil';
+
 function App() {
 
   const [productos, setProductos] = useState(null);
@@ -80,9 +83,9 @@ function App() {
   }
   useEffect(() => {
     getData();
-    getOnlyOneData();
-    getDataCategory();
-    getSpecificCategory();
+    // getOnlyOneData();
+    // getDataCategory();
+    // getSpecificCategory();
   }, []);
 
   return (
@@ -90,12 +93,14 @@ function App() {
 
 
     <BrowserRouter>
+
     <NavMenu productos={productos} getDataCategory={getDataCategory} getSpecificCategory={getSpecificCategory}/>
     <Routes>
       <Route path="/" element={<Inicio  setProductos={setProductos} addCart={addCart} productos={productos}/>} />
       <Route path="/productos/:id" element={<Productos getOnlyOneData={getOnlyOneData} addCart={addCart} />} />
       <Route path="/productos/categoria/:category" element={<ProductosCategoria getSpecificCategory={getSpecificCategory} />} />
       <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart}/>}/>
+      <Route path="/configuracion" element={<Perfil />} />
     </Routes>
     <Footer />
     </BrowserRouter>
