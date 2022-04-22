@@ -1,24 +1,20 @@
 import React from "react";
-import { Card, Button, Spinner, FormControl } from "react-bootstrap";
+import { Card, Button, Spinner } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import '../components/inicio.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-export const Inicio = (props) => {
- 
-
-  
-  
+export const Inicio = ({productos}) => {
   return (
     
     <div className="container">
     
       <h2 className="small-text my-3 text-center my-4">Destacados del mes</h2>
-      <hr className="text-success" />
+      <hr className="text-primary" />
 
       <div className="d-flex flex-wrap pb-5 mb-5">
-        {props.productos ? (
-          props.productos.map(({ image, title, price, id, category, rating}) => (
+        {productos ? (
+          productos.map(({ image, title, price, id, category, rating}) => (
             <div className=" my-3 mx-3 cardsMovement mb-5 "  key={id}>
               <Card style={{ width: "15rem"}}  >
                 <Card.Img variant="top" src={image} className="w-75 mx-4 my-1" />

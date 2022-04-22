@@ -3,8 +3,8 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../components/inicio.css";
 import { useAuth0 } from "@auth0/auth0-react";
-export const NavMenu = ({ getDataCategory }) => {
-  const { isAuthenticated, logout, user } = useAuth0();
+export const NavMenu = ({ getDataCategory, cart }) => {
+  const { isAuthenticated, user } = useAuth0();
 
   const [categorias, setCategorias] = useState(null);
 
@@ -12,7 +12,8 @@ export const NavMenu = ({ getDataCategory }) => {
 
   useEffect(() => {
     getDataCategory(setCategorias);
-  }, []);
+
+  }, [cart]);
 
   return (
     <>
@@ -25,8 +26,8 @@ export const NavMenu = ({ getDataCategory }) => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
-              className=" me-auto m-end my-2 my-lg-0"
-              style={{ maxHeight: "150px" }}
+              className=" me-auto container-fluid my-2 my-lg-0"
+              // style={{ maxHeight: "150px" }}
               navbarScroll
             >
               <Nav.Link>
@@ -39,22 +40,23 @@ export const NavMenu = ({ getDataCategory }) => {
                     <Nav.Link key={category}>
                       <Link
                         to={`productos/categoria/${category}`}
-                        className="menucategorias mx-5 "
+                        className="menucategorias "
                       >
                         {category}
                       </Link>
                     </Nav.Link>
                   ))
                 : "Cargando..."}
-
-              <Nav.Link className="">
-                <Link to="/carrito">
-                  <i className="fas fa-shopping-cart fa-1x "></i>
+                
+              <Nav.Link  className="ms-auto">
+                <Link to="/carrito" >
+                  <i className="fas fa-shopping-cart fa-1x"></i>
+                <span class="badge">{cart.length}</span>
                 </Link>
               </Nav.Link>
 
               {isAuthenticated ? (
-                <Link to="/configuracion">
+                <Link to="/configuracion" className="">
                   <img
                     width={50}
                     height={50}
@@ -70,7 +72,7 @@ export const NavMenu = ({ getDataCategory }) => {
                     className="btn btn-outline-primary"
                     onClick={() => loginWithRedirect()}
                   >
-                    Iniciar Sesion
+                    Iniciar Sesión
                   </Link>
                 </Nav.Link>
               )}

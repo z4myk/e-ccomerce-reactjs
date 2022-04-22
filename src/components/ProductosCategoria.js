@@ -15,7 +15,7 @@ export const ProductosCategoria = ({getSpecificCategory}) => {
   return (
     <div>
       <h1 className="text-center my-4">{category}</h1>
-      <hr className="text-primary" />
+      <hr className="text-primary container" />
       <div className="d-flex flex-wrap container mb-5">
         {productoCategoria !== null ? (
           productoCategoria.map(({ title, image, id, price, rating }) => (

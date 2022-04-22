@@ -1,10 +1,10 @@
 import React from "react";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 export const Perfil = () => {
-  const { isAuthenticated, logout, user } = useAuth0();
+  const {logout, user } = useAuth0();
 
   return (
-    <div className="container my-4 text-center mb-5">
+    <div className="container my-4 text-center mb-5" >
       <div className="shadow-lg p-3">
         <div className="mb-5">
           <span className="text-primary ">
@@ -29,7 +29,7 @@ export const Perfil = () => {
             className="btn btn-outline-danger my-2 w-25"
             onClick={() => logout()}
           >
-            Salir
+            Cerrar Sesión
           </button>
         </div>
       </div>

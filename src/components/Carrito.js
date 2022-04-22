@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react'
 import '../components/Carrito.css';
 import 'animate.css';
 import { useAuth0} from '@auth0/auth0-react';
+import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 export const Carrito = ({cart, setCart}) => {
 
-    const { isAuthenticated, logout, user } = useAuth0();
+    const { isAuthenticated} = useAuth0();
 
     const [total, setTotal ] = useState(null);
 
     useEffect(() => {
     totalCart();
+    
     }, [cart])
 
     const deleteCart = (id) => {
@@ -23,11 +26,30 @@ export const Carrito = ({cart, setCart}) => {
     setTotal(resultado);
     }
 
+    const clearCart = (cart) => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'la transacción fue exitosa!',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            },
+            showConfirmButton: false,
+            timer: 1200
+          })
+        while (cart.length) {
+           cart.pop();
+          }
+          
+    }
     return (
         <div>
-                {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesion para poder guardar productos al carrito</div>): (<span></span>)}
+                {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesión para poder guardar productos al carrito</div>): (<span></span>)}
             <h3 className="text-primary text-center my-4">Carrito ({cart.length})</h3>
-            {cart.length === 0 ? (<div className="alert alert-warning text-center animate__animated animate__fadeInRight">Tu carrito esta vacio 😞</div>) : (null)}
+            {cart.length === 0 ? (<div className="alert alert-warning text-center animate__animated animate__fadeInRight">Tu carrito esta vacío 😞</div>) : (null)}
             <div className="container py-1 px-3 mb-5 pb-5">
             { 
             cart.map((item) => (
@@ -46,7 +68,10 @@ export const Carrito = ({cart, setCart}) => {
        {total ? 
        (<div>
            <p className="text-center">Precio Final: ${total}<span className="text-success"> USD</span></p> 
-           <button className="btn btn-success w-100">Pagar</button>
+            <Link to="/carrito/compra-finalizada">
+           <button className="btn btn-success w-100" onClick={() => clearCart(cart)}>Pagar</button>
+        
+            </Link>
            <hr />
         </div>)
            : null}
