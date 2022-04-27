@@ -13,8 +13,6 @@ import { Footer } from './components/Footer';
 import { ProductosCategoria } from './components/ProductosCategoria';
 import { Carrito } from './components/Carrito';
 import Swal from 'sweetalert2'
-import 'react-toastify/dist/ReactToastify.css';
-
 import { Perfil } from './components/Perfil';
 import { CompraFinal } from './components/CompraFinal';
 
@@ -22,6 +20,7 @@ function App() {
 
   const [productos, setProductos] = useState(null);
   const [cart, setCart] = useState([]);
+  const [redirect, setRedirect] = useState(false);
 
   const getOnlyOneData = async (id, state) => {
     const request = await fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -87,14 +86,45 @@ function App() {
     }else{
       setCart(null)
     }
-
   }
+
+  const clearCart = (cart) => {
+    Swal.fire({
+      title: '¿Estas seguro de confirmar su compra?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setRedirect(true);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'La compra se a completado con exito!',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          },
+          showConfirmButton: false,
+          timer: 1200
+        })
+        while (cart.length) {
+           cart.pop();
+           setRedirect(false)
+          }
+      }
+      })
+      
+}
+
+
   useEffect(() => {
-    getData();
-    // getOnlyOneData();
-    // getDataCategory();
-    // getSpecificCategory();
-    
+    getData();    
   }, []);
 
   return (
@@ -108,7 +138,7 @@ function App() {
       <Route path="/" element={<Inicio  setProductos={setProductos} addCart={addCart} productos={productos}/>} />
       <Route path="/productos/:id" element={<Productos getOnlyOneData={getOnlyOneData} addCart={addCart} />} />
       <Route path="/productos/categoria/:category" element={<ProductosCategoria getSpecificCategory={getSpecificCategory} />} />
-      <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart}/>}/>
+      <Route path="/carrito" element={<Carrito cart={cart} setCart={setCart} clearCart={clearCart} redirect={redirect}/>}/>
       <Route path="/configuracion" element={<Perfil />} />
       <Route path="/carrito/Compra-finalizada" element={<CompraFinal />} />
 
