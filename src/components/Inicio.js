@@ -18,7 +18,7 @@ export const Inicio = ({
       <div className="d-flex flex-wrap pb-5 mb-5">
         {productos ? (
           productos.map(({ image, title, price, id, category, rating }) => (
-            <div className=" my-3 mx-3 cardsMovement mb-5 " key={id}>
+            <div className=" my-3 mx-3 mb-5 " key={id}>
               <Card style={{ width: "15rem" }}>
                 <Card.Img
                   variant="top"

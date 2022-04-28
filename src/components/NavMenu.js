@@ -55,7 +55,9 @@ export const NavMenu = ({ getDataCategory, cart }) => {
               </Nav.Link>
 
                 <Nav.Link>
+                  <Link to="/favoritos">
                 <i class="fas fa-heart heart"></i>
+                  </Link>
                 </Nav.Link>
               {isAuthenticated ? (
                 <Link to="/configuracion">

@@ -10,6 +10,7 @@ import { Carrito } from "./components/Carrito";
 import Swal from "sweetalert2";
 import { Perfil } from "./components/Perfil";
 import { CompraFinal } from "./components/CompraFinal";
+import { Favorito } from "./components/Favorito";
 
 function App() {
   const [productos, setProductos] = useState(null);
@@ -121,7 +122,6 @@ function App() {
     });
   };
 
-
   const addFavorite = (id) => {
     const addFav = productos.filter((item) => item.id === id );
     setFavorito([...favorito, ...addFav]);
@@ -183,6 +183,7 @@ function App() {
             }
           />
           <Route path="/configuracion" element={<Perfil />} />
+          <Route path="/favoritos" element={<Favorito favorito={favorito} removeFavorite={removeFavorite} />}  />
           <Route path="/carrito/Compra-finalizada" element={<CompraFinal />} />
         </Routes>
         <Footer />
