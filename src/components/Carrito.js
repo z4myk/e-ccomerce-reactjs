@@ -55,7 +55,7 @@ export const Carrito = ({ cart, setCart, clearCart, redirect }) => {
               <hr />
               <div className="my-4 border px-3 rounded " key={id}>
                 <div className="container">
-                  <img className="imagenCart" src={image} alt={title} />
+                  <img className="imagenCart my-2" src={image} alt={title} />
                   <p className="mx-3 text-center">{title}</p>
                   <p className="text-center">
                     ${price}

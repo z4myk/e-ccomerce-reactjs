@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&family=Ubuntu&display=swap');
 
-
-.cardsMovement{
-    cursor: pointer;
-}
-
 .menucategorias{
     font-family: 'Ubuntu', sans-serif;
     font-size: 1rem;
@@ -16,8 +11,6 @@
     color: rgb(255, 255, 255);
     
 }
-
-
 
 body{
     margin: 0;
@@ -31,7 +24,17 @@ body{
     position: absolute;
     bottom: 0;
     width: 100%;
-    
-   }
+}
 
-   
+.heart{
+    color: gray;
+}
+
+.heart:hover{
+    color: rgb(209, 31, 31);
+}
+
+.heartProducts{
+    cursor: pointer;
+    
+}

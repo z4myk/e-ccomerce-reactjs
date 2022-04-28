@@ -47,16 +47,18 @@ export const NavMenu = ({ getDataCategory, cart }) => {
                     </Nav.Link>
                   ))
                 : "Cargando..."}
-                
               <Nav.Link  className="ms-auto">
                 <Link to="/carrito" >
                   <i className="fas fa-shopping-cart fa-1x"></i>
-                <span class="badge">{cart.length}</span>
+                <span class="badge">{cart.length > 0 ? cart.length : cart.length[0] }</span>
                 </Link>
               </Nav.Link>
 
+                <Nav.Link>
+                <i class="fas fa-heart heart"></i>
+                </Nav.Link>
               {isAuthenticated ? (
-                <Link to="/configuracion" className="">
+                <Link to="/configuracion">
                   <img
                     width={50}
                     height={50}

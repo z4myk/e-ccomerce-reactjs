@@ -4,12 +4,12 @@ import {Spinner, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { useAuth0 } from "@auth0/auth0-react";
-export const Productos = (props) => {
+export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, addFavorite}) => {
   const { id } = useParams();
   const [productoIndividual, setProductoIndividual] = useState(null);
   const { isAuthenticated} = useAuth0();
   useEffect(() => {
-    props.getOnlyOneData(id, setProductoIndividual);
+  getOnlyOneData(id, setProductoIndividual);
   }, []);
 
   return (
@@ -21,6 +21,7 @@ export const Productos = (props) => {
           <h2 className="text-lead text-center my-3">
             {productoIndividual.title}
           </h2>
+
           <hr className="text-primary" />
           <div className="row">
             <div className="col-md-6">
@@ -28,8 +29,10 @@ export const Productos = (props) => {
             </div>
             <div className="col-md-6">
               <p>
-                <span className="">
-                  Categoria: <br />{" "}
+                <span>
+                Categoria: 
+                
+                <br />{" "}
                 </span>
                 {productoIndividual.category}
 
@@ -43,7 +46,7 @@ export const Productos = (props) => {
                 <span className="text-success"> USD</span>
               </p>
               {isAuthenticated ? (
-              <Button className="w-100 my-3 mb-5" variant="outline-success" onClick={() => props.addCart(productoIndividual.id)}>
+              <Button className="w-100 my-3 mb-5" variant="outline-success" onClick={() =>addCart(productoIndividual.id)}>
                     Agregar al carrito
                   </Button>
 
