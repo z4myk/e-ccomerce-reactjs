@@ -19,9 +19,9 @@ export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, ad
       {productoIndividual !== null ? (
         <div className=" justify-content-center my-3 mx-3" key={productoIndividual.id} >
           <h2 className="text-lead text-center my-3">
-            {productoIndividual.title}
+            {productoIndividual.title} 
           </h2>
-
+          
           <hr className="text-primary" />
           <div className="row">
             <div className="col-md-6">
@@ -41,10 +41,22 @@ export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, ad
                 Descripción: <br /> {productoIndividual.description}
               </p>
              <p><FontAwesomeIcon icon={faStar} className="text-warning"/> {productoIndividual.rating.rate}</p>
-              <p>
-                Precio: ${productoIndividual.price}
-                <span className="text-success"> USD</span>
+              <p className="d-flex justify-content-between">
+                Precio: ${productoIndividual.price} USD
+                {favorito.find((item) => item.id === productoIndividual.id) ? (
+                      <i
+                        class="fas fa-heart text-danger fa-1x heartProducts"
+                        onClick={() => removeFavorite(productoIndividual.id)}
+                      ></i>
+                    ) : (
+                      <i
+                        class="fas fa-heart text-secondary heartProducts "
+                        onClick={() => addFavorite(productoIndividual.id)}
+                      ></i>
+                    )}
               </p>
+
+          
               {isAuthenticated ? (
               <Button className="w-100 my-3 mb-5" variant="outline-success" onClick={() =>addCart(productoIndividual.id)}>
                     Agregar al carrito

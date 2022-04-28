@@ -168,7 +168,7 @@ function App() {
           <Route
             path="/productos/categoria/:category"
             element={
-              <ProductosCategoria getSpecificCategory={getSpecificCategory} />
+              <ProductosCategoria getSpecificCategory={getSpecificCategory} addFavorite={addFavorite} removeFavorite={removeFavorite} favorito={favorito}/>
             }
           />
           <Route

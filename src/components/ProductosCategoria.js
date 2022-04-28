@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-export const ProductosCategoria = ({getSpecificCategory}) => {
+export const ProductosCategoria = ({getSpecificCategory, favorito, addFavorite, removeFavorite}) => {
   const { category } = useParams();
 
   const [productoCategoria, setProductoCategoria] = useState(null);
@@ -25,9 +25,20 @@ export const ProductosCategoria = ({getSpecificCategory}) => {
                 <Card.Body>
                   <Card.Title>{title}</Card.Title>
                   <Card.Text><FontAwesomeIcon icon={faStar} className="text-warning"/> {rating.rate}</Card.Text>
-                  <Card.Text>
-                    ${price}
-                    <span className="text-success"> USD</span>
+                  <Card.Text className="d-flex justify-content-between">
+                    ${price} USD
+                    {favorito.find((item) => item.id === id) ? (
+                      <i
+                        class="fas fa-heart text-danger heartProducts"
+                        onClick={() => removeFavorite(id)}
+                      ></i>
+                    ) : (
+                      <i
+                        class="fas fa-heart text-secondary heartProducts"
+                        onClick={() => addFavorite(id)}
+                      ></i>
+                    )}
+                   
                   </Card.Text>
                   <Link to={`/productos/${id}`}>
                     <Button className="w-100" variant="outline-primary">
