@@ -1,5 +1,7 @@
 import React from "react";
 import { useAuth0} from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import '../components/favorito.css'
 export const Perfil = () => {
   const {logout, user } = useAuth0();
 
@@ -25,6 +27,9 @@ export const Perfil = () => {
               <i class="fas fa-check text-success"></i>
             )}
           </div>
+          <Link to="/favoritos">
+          <div className="text-primary verFav my-3">Ver Favoritos</div>
+          </Link>
           <button
             className="btn btn-outline-danger my-2 w-25"
             onClick={() => logout()}
