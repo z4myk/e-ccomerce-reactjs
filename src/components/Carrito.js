@@ -30,24 +30,6 @@ export const Carrito = ({ cart, setCart, clearCart, redirect, cantidad, addCart,
     setTotal(resultado);
   };
 
-  const increase = (product) => {
-    const productExist = cart.find((item) => item.id === product.id)
-    setCart(cart.map((item) => item.id === product.id ? {...productExist, cantidad: productExist.cantidad + 1}
-      : item
-    ))
-
-    
-  }
-  
-  const decrease = () => {
-    
-    setCantidad(cantidad - 1)
-    if(cantidad <= 1){
-      setCantidad(1)
-     }
-    
-  }
-
   return (
     <div>
       {!isAuthenticated ? (
