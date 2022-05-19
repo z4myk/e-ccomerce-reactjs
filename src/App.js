@@ -16,6 +16,7 @@ function App() {
   const [productos, setProductos] = useState(null);
   const [cart, setCart] = useState([]);
   const [favorito, setFavorito] = useState([]);
+  const [cantidad, setCantidad] = useState(1);
   const [redirect, setRedirect] = useState(false);
 
   const getOnlyOneData = async (id, state) => {
@@ -26,7 +27,7 @@ function App() {
       },
     });
     const response = await request.json();
-    state(response);
+    state({...response, cantidad: cantidad});
   };
 
   const getData = async () => {
@@ -68,26 +69,30 @@ function App() {
     state(response);
   };
 
-  const addCart = (id) => {
-    const agregarCarrito = productos.filter((item) => item.id === id);
-    if (agregarCarrito) {
-      setCart([...cart, ...agregarCarrito]);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "El producto se agrego con exito!",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-        showConfirmButton: false,
-        timer: 1200,
-      });
-    } else {
-      setCart(null);
+  
+  const addCart = (product) => {
+    const productExist = cart.find((item) => item.id === product.id)
+    if(productExist){
+    setCart(cart.map((item) => item.id === product.id ? {...productExist, cantidad: productExist.cantidad + 1}
+      : item
+    ))
+    }else{
+      setCart([...cart, {...product, cantidad: 1}])
     }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "El producto se agrego con exito!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      showConfirmButton: false,
+      timer: 1200,
+    });
+    
   };
 
   const clearCart = (cart) => {
@@ -162,7 +167,7 @@ function App() {
           <Route
             path="/productos/:id"
             element={
-              <Productos getOnlyOneData={getOnlyOneData} addCart={addCart} addFavorite={addFavorite} removeFavorite={removeFavorite} favorito={favorito} />
+              <Productos getOnlyOneData={getOnlyOneData} addCart={addCart} addFavorite={addFavorite} removeFavorite={removeFavorite} favorito={favorito} cantidad={cantidad} setCantidad={setCantidad}/>
             }
           />
           <Route
@@ -179,6 +184,9 @@ function App() {
                 setCart={setCart}
                 clearCart={clearCart}
                 redirect={redirect}
+                setCantidad={setCantidad}
+                cantidad={cantidad}
+                addCart={addCart}
               />
             }
           />

@@ -14,8 +14,7 @@ export const Inicio = ({
     <div className="container">
       <h2 className="small-text my-3 text-center my-4">Destacados del mes</h2>
       <hr className="text-primary" />
-
-      <div className="d-flex flex-wrap pb-5 mb-5">
+      <div className="d-flex flex-wrap pb-5 mb-5 ">
         {productos ? (
           productos.map(({ image, title, price, id, category, rating }) => (
             <div className=" my-3 mx-3 mb-5 " key={id}>
@@ -23,7 +22,7 @@ export const Inicio = ({
                 <Card.Img
                   variant="top"
                   src={image}
-                  className="w-75 mx-4 my-1"
+                  className="w-75 mx-4 my-1 "
                 />
                 <Card.Body>
                   <Card.Title>{title}</Card.Title>
@@ -36,7 +35,7 @@ export const Inicio = ({
                     ${price} USD
                     {favorito.find((item) => item.id === id) ? (
                       <i
-                        class="fas fa-heart text-danger heartProducts"
+                        class="fas fa-heart text-danger heartProducts "
                         onClick={() => removeFavorite(id)}
                       ></i>
                     ) : (

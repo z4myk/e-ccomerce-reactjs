@@ -4,20 +4,25 @@ import {Spinner, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { useAuth0 } from "@auth0/auth0-react";
-export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, addFavorite}) => {
+export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, addFavorite, cantidad, setCantidad}) => {
   const { id } = useParams();
   const [productoIndividual, setProductoIndividual] = useState(null);
   const { isAuthenticated} = useAuth0();
-  useEffect(() => {
-  getOnlyOneData(id, setProductoIndividual);
-  }, []);
 
+  useEffect(() => {
+    getOnlyOneData(id, setProductoIndividual);
+   
+    
+  }, [cantidad]);
+ 
+  
   return (
     <>
     {!isAuthenticated ? (<div className="alert alert-warning text-center p-4"><i class="fas fa-exclamation-circle text-danger"></i> Inicie sesion para guardar productos al carrito.</div>): (<span></span>)}
     <div className="container mb-5 pb-5">
       {productoIndividual !== null ? (
-        <div className=" justify-content-center my-3 mx-3" key={productoIndividual.id} >
+
+        <div className=" justify-content-center my-3 mx-3 animate__animated animate__fadeIn" key={productoIndividual.id} >
           <h2 className="text-lead text-center my-3">
             {productoIndividual.title} 
           </h2>
@@ -45,20 +50,19 @@ export const Productos = ({getOnlyOneData, addCart, favorito, removeFavorite, ad
                 Precio: ${productoIndividual.price} USD
                 {favorito.find((item) => item.id === productoIndividual.id) ? (
                       <i
-                        class="fas fa-heart text-danger fa-1x heartProducts"
-                        onClick={() => removeFavorite(productoIndividual.id)}
+                      class="fas fa-heart text-danger fa-1x heartProducts"
+                      onClick={() => removeFavorite(productoIndividual.id)}
                       ></i>
-                    ) : (
+                      ) : (
                       <i
                         class="fas fa-heart text-secondary heartProducts "
                         onClick={() => addFavorite(productoIndividual.id)}
-                      ></i>
+                        ></i>
                     )}
               </p>
 
-          
               {isAuthenticated ? (
-              <Button className="w-100 my-3 mb-5" variant="outline-success" onClick={() =>addCart(productoIndividual.id)}>
+              <Button className="w-100 my-3 mb-5" variant="outline-success" onClick={() => addCart(productoIndividual)}>
                     Agregar al carrito
                   </Button>
 

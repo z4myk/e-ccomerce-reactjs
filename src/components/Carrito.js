@@ -4,7 +4,7 @@ import "animate.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-export const Carrito = ({ cart, setCart, clearCart, redirect }) => {
+export const Carrito = ({ cart, setCart, clearCart, redirect, cantidad, addCart, setCantidad}) => {
   const { isAuthenticated } = useAuth0();
 
   const [total, setTotal] = useState(null);
@@ -14,16 +14,39 @@ export const Carrito = ({ cart, setCart, clearCart, redirect }) => {
     totalCart();
   }, [cart]);
 
-  const deleteCart = (id) => {
-    let borrarCarrito = cart.filter((item) => item.id !== id);
-    setCart(borrarCarrito);
+  const deleteCart = (product) => {
+    const productExist = cart.find((item) => item.id === product.id)
+    if(productExist.cantidad === 1){
+      setCart(cart.filter((item) => item.id !== product.id));
+    }else{
+      setCart(cart.map((item) => item.id === product.id ? {...productExist, cantidad: item.cantidad - 1} : item))
+    }
+
   };
 
   const totalCart = () => {
     let resultado = 0;
-    cart.map((item) => (resultado += item.price));
+    cart.map((item) => (resultado += (item.price * item.cantidad)));
     setTotal(resultado);
   };
+
+  const increase = (product) => {
+    const productExist = cart.find((item) => item.id === product.id)
+    setCart(cart.map((item) => item.id === product.id ? {...productExist, cantidad: productExist.cantidad + 1}
+      : item
+    ))
+
+    
+  }
+  
+  const decrease = () => {
+    
+    setCantidad(cantidad - 1)
+    if(cantidad <= 1){
+      setCantidad(1)
+     }
+    
+  }
 
   return (
     <div>
@@ -50,21 +73,22 @@ export const Carrito = ({ cart, setCart, clearCart, redirect }) => {
           {cart.length === 0 ? null : (
             <h3 className="text-center">Carrito({cart.length})</h3>
           )}
-          {cart.map(({ id, image, title, price }) => (
-            <div>
+          {cart.map((item) => (
+            <div className=" animate__animated animate__fadeInLeft">
               <hr />
-              <div className="my-4 border px-3 rounded " key={id}>
+              <div className="my-4 border px-3 rounded " key={item.id}>
                 <div className="container">
-                  <img className="imagenCart my-2" src={image} alt={title} />
-                  <p className="mx-3 text-center">{title}</p>
+                  <img className="imagenCart my-2" src={item.image} alt={item.title} />
+                  <p className="mx-3 text-center">{item.title}</p>
                   <p className="text-center">
-                    ${price}
+                    ${item.price}
                     <span className="text-success"> USD</span>
                   </p>
+          <p className="text-center">Cantidad: {item.cantidad}</p>
                   <div className="row align-items-center">
                     <button
                       className="btn btn-outline-danger my-1"
-                      onClick={() => deleteCart(id)}
+                      onClick={() => deleteCart(item)}
                     >
                       <i class="fas fa-trash"></i>
                     </button>
@@ -77,22 +101,23 @@ export const Carrito = ({ cart, setCart, clearCart, redirect }) => {
         {cart.length === 0 ? (
           <span></span>
         ) : (
-          <div className="col-md-8 col-sm-12">
+          <div className="col-md-8 col-sm-12 animate__animated animate__fadeIn ">
             <h3 className="text-center">Información de la compra</h3>
             <hr />
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Productos</th>
+                  <th scope="col">Cantidad</th>
 
                   <th scope="col">Precio($)</th>
                 </tr>
               </thead>
               <tbody>
-                {cart.map(({ title, price }) => (
+                {cart.map(({ title, price, cantidad }) => (
                   <tr>
                     <td>{title}</td>
-
+                <td>{cantidad}</td>
                     <td>${price}</td>
                   </tr>
                 ))}

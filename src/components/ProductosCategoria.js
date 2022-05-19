@@ -19,7 +19,7 @@ export const ProductosCategoria = ({getSpecificCategory, favorito, addFavorite, 
       <div className="d-flex flex-wrap container mb-5">
         {productoCategoria !== null ? (
           productoCategoria.map(({ title, image, id, price, rating }) => (
-            <div className="  my-3 mx-3 mb-5" key={id}>
+            <div className="  my-3 mx-3 mb-5 " key={id}>
               <Card style={{ width: "15rem" }} className="shadow-lg">
                 <Card.Img variant="top" src={image}  />
                 <Card.Body>

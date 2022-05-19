@@ -10,7 +10,7 @@ export const Perfil = () => {
       <div className="shadow-lg p-3">
         <div className="mb-5">
           <span className="text-primary ">
-            Hola, bienvenido {user.name}! <br />
+            Hola, bienvenid@ {user.name}! <br />
             <img
               width={100}
               height={100}
