@@ -27,7 +27,7 @@ export const NavMenu = ({ getDataCategory, cart }) => {
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className=" me-auto container-fluid my-2 my-lg-0"
-              // style={{ maxHeight: "150px" }}
+              // style={{ maxHeight: "200px" }}
               navbarScroll
             >
               <Nav.Link>
@@ -40,14 +40,15 @@ export const NavMenu = ({ getDataCategory, cart }) => {
                     <Nav.Link key={category}>
                       <Link
                         to={`productos/categoria/${category}`}
-                        className="menucategorias "
+                        className="menucategorias"
                       >
                         {category}
                       </Link>
                     </Nav.Link>
                   ))
                 : "Cargando..."}
-              <Nav.Link  className="ms-auto">
+                <span className="ms-auto "></span>
+              <Nav.Link  className="">
                 <Link to="/carrito" >
                   <i className="fas fa-shopping-cart fa-1x"></i>
                 <span class="badge">{cart.length > 0 ? cart.length : cart.length[0] }</span>
@@ -64,7 +65,7 @@ export const NavMenu = ({ getDataCategory, cart }) => {
                   <img
                     width={50}
                     height={50}
-                    className="rounded mx-3"
+                    className="rounded"
                     src={user.picture}
                     alt={user.name}
                   />

@@ -14,10 +14,10 @@ export const Inicio = ({
     <div className="container">
       <h2 className="small-text my-3 text-center my-4">Destacados del mes</h2>
       <hr className="text-primary" />
-      <div className="d-flex flex-wrap pb-5 mb-5 ">
+      <div className="d-flex flex-wrap pb-5 mb-5 responsiveMobile">
         {productos ? (
           productos.map(({ image, title, price, id, category, rating }) => (
-            <div className=" my-3 mx-3 mb-5 " key={id}>
+            <div className=" my-3 mx-3 mb-5  " key={id}>
               <Card style={{ width: "15rem" }}>
                 <Card.Img
                   variant="top"

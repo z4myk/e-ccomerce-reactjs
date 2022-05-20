@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import '../components/inicio.css'
 export const ProductosCategoria = ({getSpecificCategory, favorito, addFavorite, removeFavorite}) => {
   const { category } = useParams();
 
@@ -16,7 +17,7 @@ export const ProductosCategoria = ({getSpecificCategory, favorito, addFavorite, 
     <div>
       <h1 className="text-center my-4">{category}</h1>
       <hr className="text-primary container" />
-      <div className="d-flex flex-wrap container mb-5">
+      <div className="d-flex flex-wrap container mb-5 responsiveMobile">
         {productoCategoria !== null ? (
           productoCategoria.map(({ title, image, id, price, rating }) => (
             <div className="  my-3 mx-3 mb-5 " key={id}>
