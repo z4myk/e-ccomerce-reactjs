@@ -43,7 +43,7 @@ export const ProductosCategoria = ({getSpecificCategory, favorito, addFavorite, 
                   </Card.Text>
                   <Link to={`/productos/${id}`}>
                     <Button className="w-100" variant="outline-primary">
-                      Ver Más
+                      Ver más
                     </Button>
                   </Link>
                 </Card.Body>
