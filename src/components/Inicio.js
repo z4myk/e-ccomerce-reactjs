@@ -22,9 +22,6 @@ export const Inicio = ({
     <div className="carousel-item">
       <img src={logo} className="d-block w-100" alt="..." />
     </div>
-    {/* <div className="carousel-item">
-      <img src="..." className="d-block w-100" alt="..." />
-    </div> */}
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
