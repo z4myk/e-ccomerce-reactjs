@@ -17,7 +17,7 @@ export const Favorito = ({favorito, removeFavorite}) => {
                             <div className="col-md-2">
                             <img src={image} alt={title} className="imagenFavorito" />
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-6 mb-5">
                                 <p className="mx-5">{title}</p>
                                 <p className="mx-5">{category}</p>
                                 <p className="mx-5">${price} <span className="text-success">USD</span></p>

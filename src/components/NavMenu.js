@@ -17,7 +17,7 @@ export const NavMenu = ({ getDataCategory, cart }) => {
 
   return (
     <>
-      <Navbar bg="dark shadow-lg" expand="lg" className="">
+      <Navbar bg="dark shadow-lg" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#" className="">
             <span className="">React</span>
@@ -65,7 +65,7 @@ export const NavMenu = ({ getDataCategory, cart }) => {
                   <img
                     width={50}
                     height={50}
-                    className="rounded"
+                    className="rounded "
                     src={user.picture}
                     alt={user.name}
                   />
