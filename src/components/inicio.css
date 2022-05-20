@@ -78,3 +78,10 @@ body{
 
 
 }
+
+@media all and (max-width: 576px){
+    .carousel-sm-responsive{
+        height: 200px;
+        object-fit: cover;
+    } 
+}
