@@ -4,7 +4,7 @@ import "animate.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-export const Carrito = ({ cart, setCart, clearCart, redirect, cantidad, addCart, setCantidad}) => {
+export const Carrito = ({ cart, setCart, clearCart, redirect}) => {
   const { isAuthenticated } = useAuth0();
 
   const [total, setTotal] = useState(null);
